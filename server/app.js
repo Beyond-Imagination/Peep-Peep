@@ -5,6 +5,8 @@ const logger = require('morgan');
 
 require('dotenv').config({ path: path.join(__dirname, 'config/.env') });
 
+require('./models/connector')();
+
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
