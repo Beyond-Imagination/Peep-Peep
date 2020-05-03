@@ -12,5 +12,6 @@ passport.deserializeUser(function(id, done) {
 
 // ==== Register Strategies ====
 passport.use('local-signup', local.signup);
+passport.use('local-signin', local.signin);
 
 module.exports = passport;

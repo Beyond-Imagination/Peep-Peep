@@ -8,8 +8,13 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/signup', passport.authenticate('local-signup',{
-    successRedirect : "/",
-    failureRedirect : "/login",
-  }));
+  successRedirect : "/",
+  failureRedirect : "/signup",
+}));
+
+router.post('/signin', passport.authenticate('local-signin', {
+  successRedirect : "/",
+  failureRedirect : "/signin",
+}))
 
 module.exports = router;
