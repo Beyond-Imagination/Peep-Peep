@@ -1,20 +1,19 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-const heading = () => (
-    <View style={styles.heading}>
-        <Text>Peep Peep</Text>
+const feed = () => (
+    <View style={styles.body}>
+        <Text>Feed tab</Text>
     </View>
 )
 
 const styles = StyleSheet.create({
-    heading: {
+    body: {
         flex: 1,
-        width: "100%",
-        backgroundColor: '#ffe277',
+        backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
     },
 });
 
-export default heading;
+export default feed;

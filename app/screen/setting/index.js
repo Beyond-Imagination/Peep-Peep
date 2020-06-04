@@ -1,19 +1,19 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-const body = () => (
+const setting = () => (
     <View style={styles.body}>
-        <Text>This is body part</Text>
+        <Text>setting tab</Text>
     </View>
 )
 
 const styles = StyleSheet.create({
     body: {
-        flex: 8,
+        flex: 1,
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
     },
 });
 
-export default body;
+export default setting;
