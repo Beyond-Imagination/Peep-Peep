@@ -1,8 +1,8 @@
 import React from 'react';
-import DefaultScreen from './screen/common/default'
+import AppScreen from './screen'
 
 export default function App() {
   return (
-    <DefaultScreen />
+    <AppScreen />
   );
 }
