@@ -13,7 +13,7 @@ export default class SigninScreen extends Component{
         this.props.navigation.replace('TabNavigator')
     }
 
-    _doSignUp() {
+    _goSignUp() {
         this.props.navigation.replace('SignUp')
     }
 
@@ -39,7 +39,7 @@ export default class SigninScreen extends Component{
                     </TouchableOpacity>
                     <TouchableOpacity 
                         style={styles.button}
-                        onPress={this._doSignUp.bind(this)}>
+                        onPress={this._goSignUp.bind(this)}>
                         <Text style={styles.buttonTitle}>Sign Up</Text>
                     </TouchableOpacity>
                 </View>
