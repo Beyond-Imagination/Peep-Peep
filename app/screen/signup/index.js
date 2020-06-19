@@ -2,7 +2,14 @@ import React, {Component} from 'react';
 import { StyleSheet, View, Text, TextInput, TouchableOpacity } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
+import { signUpApi } from '../../api/user'
+
 export default class SignUpScreen extends Component{
+
+    constructor(){
+        super();
+        this.state = {email :"", password : "", nickname : ""};
+    }
     
     static navigationOptions = {
         header: null,
@@ -12,7 +19,20 @@ export default class SignUpScreen extends Component{
         this.props.navigation.replace('SignIn')
     }
 
-    _doSignUp() {
+    _doSignUp = () => {
+        let body = {
+            email: this.state.email,
+            password: this.state.password,
+            nickname: this.state.nickname
+        };
+        console.log(body)
+        signUpApi(body)
+            .then(function (response) {
+                    console.log("success", response);
+                })
+            .catch(function (error) {
+                console.log("error", error);
+                })
         this.props.navigation.replace('TabNavigator')
     }
 
@@ -25,13 +45,16 @@ export default class SignUpScreen extends Component{
                 <View style={styles.formArea}>
                     <TextInput 
                         style={styles.textForm} 
-                        placeholder={"ID"}/>
+                        placeholder={"email"}
+                        onChangeText = {(email)=>this.setState({email})}/>
                     <TextInput 
                         style={styles.textForm} 
-                        placeholder={"Password"}/>
+                        placeholder={"Password"}
+                        onChangeText = {(password)=>this.setState({password})}/>
                     <TextInput 
                         style={styles.textForm} 
-                        placeholder={"Nickname"}/>
+                        placeholder={"Nickname"}
+                        onChangeText = {(nickname)=>this.setState({nickname})}/>
                 </View>
                 <View style={styles.buttonArea}>
                     <TouchableOpacity 

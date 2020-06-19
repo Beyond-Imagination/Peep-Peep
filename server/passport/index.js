@@ -2,6 +2,7 @@ const passport = require("passport");
 const local = require("./local");
 
 passport.serializeUser(function(user, done) {
+  console.log(user);
   done(null, user._id);
 });
 passport.deserializeUser(function(id, done) {
