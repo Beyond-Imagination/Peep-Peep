@@ -2,15 +2,33 @@ import React, {Component} from 'react';
 import { StyleSheet, View, Text, TextInput, TouchableOpacity } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
+import { signInApi } from '../../api/user'
+
 export default class SigninScreen extends Component{
+    
+    constructor(){
+        super();
+        this.state = {email :"", password : ""};
+    }
     
     static navigationOptions = {
         header: null,
     };
 
-    _doLogin(){
-        // do something
-        this.props.navigation.replace('TabNavigator')
+    _doSignin(){
+        let props = this.props
+        let body = {
+            email: this.state.email,
+            password: this.state.password,
+        };
+        signInApi(body)
+            .then(function (response) {
+                    console.log("success", response);
+                    props.navigation.replace('TabNavigator')
+                })
+            .catch(function (error) {
+                    console.log("error", error);
+                })
     }
 
     _goSignUp() {
@@ -26,15 +44,17 @@ export default class SigninScreen extends Component{
                 <View style={styles.formArea}>
                     <TextInput 
                         style={styles.textForm} 
-                        placeholder={"ID"}/>
+                        placeholder={"Email"}
+                        onChangeText = {(email)=>this.setState({email})}/>
                     <TextInput 
                         style={styles.textForm} 
-                        placeholder={"Password"}/>
+                        placeholder={"Password"}
+                        onChangeText = {(password)=>this.setState({password})}/>
                 </View>
                 <View style={styles.buttonArea}>
                     <TouchableOpacity 
                         style={styles.button}
-                        onPress={this._doLogin.bind(this)}>
+                        onPress={this._doSignin.bind(this)}>
                         <Text style={styles.buttonTitle}>Login</Text>
                     </TouchableOpacity>
                     <TouchableOpacity 
