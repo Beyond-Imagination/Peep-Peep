@@ -20,20 +20,20 @@ export default class SignUpScreen extends Component{
     }
 
     _doSignUp = () => {
+        let props = this.props;
         let body = {
             email: this.state.email,
             password: this.state.password,
             nickname: this.state.nickname
         };
-        console.log(body)
         signUpApi(body)
             .then(function (response) {
                     console.log("success", response);
+                    props.navigation.replace('TabNavigator')
                 })
             .catch(function (error) {
-                console.log("error", error);
+                    console.log("error", error);
                 })
-        this.props.navigation.replace('TabNavigator')
     }
 
     render(){
