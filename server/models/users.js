@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
     image: String,
     followings: [mongoose.Schema.Types.ObjectId],
     followers: [mongoose.Schema.Types.ObjectId],
-    posts: [mongoose.Schema.Types.ObjectId],
+    peeps: [mongoose.Schema.Types.ObjectId],
 },
 {
   timestamps: true
