@@ -14,3 +14,7 @@ Content-Type: application/json
 {
     "content": "this is my first peep"
 }
+
+###
+GET http://localhost:3000/peep
+Content-Type: application/json
