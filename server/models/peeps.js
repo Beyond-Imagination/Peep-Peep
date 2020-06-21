@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const postSchema = new mongoose.Schema({
+const peepSchema = new mongoose.Schema({
     id: mongoose.Schema.Types.ObjectId,
     postedBy: mongoose.Schema.Types.ObjectId,
     content: String,
@@ -10,6 +10,6 @@ const postSchema = new mongoose.Schema({
   timestamps: true
 });
 
-const Post = mongoose.model('Post', postSchema);
+const Peep = mongoose.model('Peep', peepSchema);
 
-module.exports = Post;
+module.exports = Peep;

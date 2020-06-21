@@ -30,8 +30,10 @@ app.use(passport.session());
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const peepsRouter = require('./routes/peeps');
 
 app.use('/', indexRouter);
 app.use('/user', usersRouter);
+app.use('/peep', peepsRouter);
 
 module.exports = app;
