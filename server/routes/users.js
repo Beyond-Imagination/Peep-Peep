@@ -4,7 +4,8 @@ const router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+    console.log("response", req.user)
+    res.json(req.user);
 });
 
 router.post('/signup', passport.authenticate('local-signup',{
