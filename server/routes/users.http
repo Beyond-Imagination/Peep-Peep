@@ -16,6 +16,3 @@ Content-Type: application/json
     "password": "123"
 }
 
-###
-GET http://localhost:3000/user
-Content-Type: application/json
