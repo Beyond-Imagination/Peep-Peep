@@ -11,7 +11,6 @@ export default class Feed extends Component{
     }
 
     componentDidMount() {
-        let feedComponent = this
         peepGetApi()
             .then((response) => {
                 console.log("success", response);
