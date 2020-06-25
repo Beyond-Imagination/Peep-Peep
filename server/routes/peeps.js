@@ -6,6 +6,7 @@ const Peep = require("../models/peeps");
 router.post('/', function(req, res, next){
     newPeep = new Peep();
     newPeep.content = req.body.content;
+    newPeep.postedBy = req.user._id;
 
     newPeep.save(function(err) {
         if (err) {
@@ -17,7 +18,7 @@ router.post('/', function(req, res, next){
 });
 
 router.get('/', function(req, res, next){
-    Peep.find(function(err, peeps){
+    Peep.find().populate('postedBy').exec(function(err, peeps){
         if(err) 
             return res.status(500).send({error: 'fail to read database'});
         res.json(peeps);
