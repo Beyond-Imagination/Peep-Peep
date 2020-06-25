@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { StyleSheet, View, FlatList } from 'react-native';
+import { ListItem } from 'react-native-elements'
 
 import { peepGetApi } from '../../../api/peep'
 
@@ -14,7 +15,7 @@ export default class Feed extends Component{
         peepGetApi()
             .then((response) => {
                 console.log("success", response);
-                this.SetState({peeps: response.data})
+                this.setState({peeps: response.data})
             })
             .catch(function (error) {
                 console.log("error", error);
