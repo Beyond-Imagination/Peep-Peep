@@ -1,21 +1,31 @@
 const express = require('express');
-const passport = require('../passport');
 const router = express.Router();
 
+const User = require("../models/users");
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-    console.log("response", req.user)
-    res.json(req.user);
+    User.findOne({_id: req.user._id}).populate('followers').populate('followings').exec(function(err, user){
+        if(err) 
+            return res.status(500).send({error: 'fail to read database'});
+        res.json(user);
+    })
 });
 
-router.post('/signup', passport.authenticate('local-signup',{
-  successRedirect : "/",
-  failureRedirect : "/user/signup/fail",
-}));
+router.get('/follower', function(req, res, next){
+    User.findOne({_id: req.user._id}).populate('followers').exec(function(err, user){
+        if(err) 
+            return res.status(500).send({error: 'fail to read database'});
+        console.log(user)
+        res.json(user.followers);
+    })
+});
 
-router.post('/signin', passport.authenticate('local-signin', {
-  successRedirect : "/",
-  failureRedirect : "/signin",
-}))
+router.get('/following', function(req, res, next){
+    User.findOne({_id: req.user._id}).populate('followings').exec(function(err, user){
+        if(err) 
+            return res.status(500).send({error: 'fail to read database'});
+        res.json(user.followings);
+    })
+});
 
 module.exports = router;

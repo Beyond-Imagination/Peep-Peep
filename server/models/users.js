@@ -7,9 +7,9 @@ const userSchema = new mongoose.Schema({
     nickname: String,
     status: { type: Number, default: 1 },
     image: String,
-    followings: [mongoose.Schema.Types.ObjectId],
-    followers: [mongoose.Schema.Types.ObjectId],
-    peeps: [mongoose.Schema.Types.ObjectId],
+    followings: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+    followers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+    peeps: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Peep' }],
 },
 {
   timestamps: true
