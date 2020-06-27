@@ -3,10 +3,11 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const session = require('express-session');
-const passport = require('./passport');
-const cors = require('cors');
 
 require('dotenv').config({ path: path.join(__dirname, 'config/.env') });
+
+const passport = require('./passport');
+const cors = require('cors');
 
 require('./models/connector')();
 

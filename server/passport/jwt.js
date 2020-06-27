@@ -10,7 +10,7 @@ const opts = {
 };
 
 AuthenticateJwt = new JwtStrategy(opts, function(jwtPayload, done) {
-    User.findOne({id: jwtPayload.sub}, function(err, user) {
+    User.findOne({_id: jwtPayload.id}).populate('followings').populate('followers').exec(function(err, user){
         if (err) {
             return done(err, false);
         }

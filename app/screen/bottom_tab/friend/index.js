@@ -1,19 +1,42 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, {Component} from 'react';
+import { StyleSheet, View, FlatList } from 'react-native';
+import { ListItem } from 'react-native-elements'
 
-const friend = () => (
-    <View style={styles.body}>
-        <Text>friend tab</Text>
-    </View>
-)
+import { getUserApi } from '../../../api/user'
 
-const styles = StyleSheet.create({
-    body: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-});
+export default class Friend extends Component{
+    constructor(){
+        super();
+        this.state = {followings: [], followers: []};
+    }
 
-export default friend;
+    componentDidMount() {
+        getUserApi()
+            .then((response) => {
+                this.setState({followings: response.data.followings, followers: response.data.followers})
+            })
+            .catch(function (error) {
+                console.log("error", error);
+            })
+    }
+
+    keyExtractor = (item, index) => index.toString()
+
+    renderItem = ({ item }) => (
+        <ListItem
+            title={item.nickname}
+        />
+    )
+
+    render(){
+        return (
+            <View style={{flex: 1}}>
+                <FlatList
+                    data={this.state.followers}
+                    renderItem={this.renderItem}
+                    keyExtractor={this.keyExtractor}
+                />
+            </View>
+        )
+    }
+}
