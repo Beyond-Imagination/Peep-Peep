@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, TextInput, TouchableOpacity } from 'react-nativ
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 import { signInApi } from '../../api/user'
+import { setToken } from '../../secure_stores'
 
 export default class SigninScreen extends Component{
     
@@ -24,6 +25,7 @@ export default class SigninScreen extends Component{
         signInApi(body)
             .then(function (response) {
                     console.log("success", response);
+                    setToken(response.data.jwt)
                     props.navigation.replace('TabNavigator')
                 })
             .catch(function (error) {
