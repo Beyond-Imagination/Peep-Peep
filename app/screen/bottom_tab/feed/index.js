@@ -32,7 +32,9 @@ export default class Feed extends Component{
     render(){
         return (
             <View style={{flex: 1}}>
+                <View style={{flex: 1}}></View>
                 <FlatList
+                    style={{flex: 3}}
                     data={this.state.peeps}
                     renderItem={this.renderItem}
                     keyExtractor={this.keyExtractor}
