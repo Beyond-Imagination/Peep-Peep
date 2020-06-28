@@ -28,6 +28,8 @@ export default class Feed extends Component{
     renderItem = ({ item }) => (
         <ListItem
             title={item.content}
+            subtitle={item.postedBy.nickname}
+            bottomDivider
         />
     )
 
