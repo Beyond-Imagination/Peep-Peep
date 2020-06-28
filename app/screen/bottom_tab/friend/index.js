@@ -1,8 +1,13 @@
 import React, {Component} from 'react';
 import { StyleSheet, View, FlatList } from 'react-native';
 import { ListItem } from 'react-native-elements'
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
 import { getUserApi } from '../../../api/user'
+
+import FollowList from './follow_list'
+
+const Tab = createMaterialTopTabNavigator();
 
 export default class Friend extends Component{
     constructor(){
@@ -20,22 +25,13 @@ export default class Friend extends Component{
             })
     }
 
-    keyExtractor = (item, index) => index.toString()
-
-    renderItem = ({ item }) => (
-        <ListItem
-            title={item.nickname}
-        />
-    )
-
     render(){
         return (
             <View style={{flex: 1}}>
-                <FlatList
-                    data={this.state.followers}
-                    renderItem={this.renderItem}
-                    keyExtractor={this.keyExtractor}
-                />
+                <Tab.Navigator>
+                    <Tab.Screen name="Followings" component={()=><FollowList follow={this.state.followings} />} />
+                    <Tab.Screen name="Followers" component={()=><FollowList follow={this.state.followers} />} />
+                </Tab.Navigator>
             </View>
         )
     }
