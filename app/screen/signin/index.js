@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, TextInput, TouchableOpacity } from 'react-nativ
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 import { signInApi } from '../../api/user'
-import { setToke, getToken } from '../../secure_stores'
+import { setToken, getToken } from '../../secure_stores'
 
 export default class SigninScreen extends Component{
     
