@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import { StyleSheet, View, FlatList } from 'react-native';
 import { ListItem } from 'react-native-elements'
 
+import PeepPosting from './peep_posting'
+
 import { peepGetApi } from '../../../api/peep'
 
 export default class Feed extends Component{
@@ -32,9 +34,9 @@ export default class Feed extends Component{
     render(){
         return (
             <View style={{flex: 1}}>
-                <View style={{flex: 1}}></View>
+                <PeepPosting style={styles.peepPosting}></PeepPosting>
                 <FlatList
-                    style={{flex: 3}}
+                    style={{flex: 8}}
                     data={this.state.peeps}
                     renderItem={this.renderItem}
                     keyExtractor={this.keyExtractor}
@@ -45,10 +47,8 @@ export default class Feed extends Component{
 }
 
 const styles = StyleSheet.create({
-    body: {
+    peepPosting: {
         flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
+        flexDirection: 'row'
+    }
 });
