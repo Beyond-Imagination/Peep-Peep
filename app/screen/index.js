@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { StyleSheet, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -11,20 +11,28 @@ import TabNavigator from './bottom_tab';
 
 const Stack = createStackNavigator();
 
-const body = () => (
-    <View style={{flex: 1}}>
-        <Head style={styles.head}/>
-        <View style={styles.body}>
-            <NavigationContainer >
-                <Stack.Navigator initialRouteName="SignIn" screenOptions={{headerShown: false}}>
-                    <Stack.Screen name="SignIn" component={SignInScreen} />
-                    <Stack.Screen name="SignUp" component={SignUpScreen} />
-                    <Stack.Screen name="TabNavigator" component={TabNavigator} />
-                </Stack.Navigator>
-            </NavigationContainer>
-        </View>
-    </View>
-)
+export default class MainScreen extends Component{
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return(
+            <View style={{flex: 1}}>
+                <Head style={styles.head}/>
+                <View style={styles.body}>
+                    <NavigationContainer >
+                        <Stack.Navigator initialRouteName="SignIn" screenOptions={{headerShown: false}}>
+                            <Stack.Screen name="SignIn" component={SignInScreen} />
+                            <Stack.Screen name="SignUp" component={SignUpScreen} />
+                            <Stack.Screen name="TabNavigator" component={TabNavigator} />
+                        </Stack.Navigator>
+                    </NavigationContainer>
+                </View>
+            </View>
+        )
+    }
+}
 
 const styles = StyleSheet.create({
     head: {
@@ -39,4 +47,3 @@ const styles = StyleSheet.create({
     },
 });
 
-export default body;
